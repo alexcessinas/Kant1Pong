@@ -1,6 +1,6 @@
 from objects.paddle import Paddle
-from pygame.surface import Surface
 from objects.ball import Ball
+from pygame import Surface, draw
 
 class Game:
 
@@ -20,3 +20,4 @@ class Game:
         self.player_paddle.update()
         self.enemy_paddle.update()
         # Collision Ball/Pads
+
