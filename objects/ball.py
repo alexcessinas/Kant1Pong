@@ -9,7 +9,7 @@ class Ball:
         self.pos = pos
         self.dir = Vector2(1, 1)
         self.speed = 0.2
-        self.size = 6
+        self.size = 5
         self.effect = Sound("assets/sounds/pong.wav")
 
     def init(self, screen: Surface):
@@ -34,7 +34,6 @@ class Ball:
         self.pos += self.dir * self.speed
 
         draw.circle(self.screen, (255, 255, 255), self.pos, self.size)
-        draw.rect(self.screen, (0, 255, 0), self.get_collision_square())
 
     def get_collision_square(self):
         return Rect(self.pos.x - self.size, self.pos.y - self.size, self.size * 2, self.size * 2);
