@@ -16,7 +16,7 @@ class Paddle():
         # Quelle est la balle du jeu (pour l'IA)
         self.ball = ball
         # Vitesse de déplacement de la raquette
-        self.speed = 1
+        self.speed = 2
 
     # Méthode d'initialisation de l'objet, à exécuter une fois au début
     def init(self, screen: Surface):
