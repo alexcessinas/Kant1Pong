@@ -1,22 +1,16 @@
-import pygame
-from pygame import display, draw, event, key
-from pygame.constants import K_LEFT, K_RIGHT, K_UP, K_DOWN
+from objects.ball import Ball
+from pygame import Surface
 
-screen = display.set_mode((800,600))
-running = True
+class Game:
 
+    ball = Ball()
 
-def init():
-    pygame.init()
+    should_run = True
 
+    def init(self, screen: Surface):
+        self.ball.init(screen)
 
-def update():
-    for e in event.get():
-        if e.type == pygame.QUIT:
-            running = False
-    
-    screen.fill((0,0,0))
+    def update(self):
+        self.ball.update()
 
-    # Le jeu
-
-    display.update()
+        # Collision Ball/Pads
