@@ -16,7 +16,7 @@ class Paddle():
         # Quelle est la balle du jeu (pour l'IA)
         self.ball = ball
         # Vitesse de déplacement de la raquette
-        self.speed = 0.5
+        self.speed = 1
 
     # Méthode d'initialisation de l'objet, à exécuter une fois au début
     def init(self, screen: Surface):
@@ -39,15 +39,22 @@ class Paddle():
             if self.rect.y <= 0:
                 self.rect.y = 0
             else:
-                self.rect.y -= 1
+                self.rect.y -= 1 * self.speed
         
         if key.get_pressed()[K_DOWN]:
-            if self.rect.y >= 500:
-                self.rect.y = 500
+            if self.rect.y >= self.screen.get_height() - 100:
+                self.rect.y = self.screen.get_height() - 100
             else:
-                self.rect.y += 1
+                self.rect.y += 1 * self.speed
         return
 
     # Imbattable, la raquette suis la balle directement sans faute
     def automatic_control(self):
+        self.rect.y = self.ball.pos.y - 50
+        
+        if self.rect.y <= 0:
+                self.rect.y = 0
+        
+        if self.rect.y >= self.screen.get_height() - 100:
+                self.rect.y = self.screen.get_height() - 100
         return
