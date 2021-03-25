@@ -1,6 +1,6 @@
 from pygame import Vector2, Surface, draw, mixer, Rect
 from pygame.mixer import Sound
-
+from random import randint
 
 class Ball:
 
@@ -8,7 +8,7 @@ class Ball:
         mixer.init()
         self.pos = pos
         self.dir = Vector2(1, 1)
-        self.speed = 0.3
+        self.speed = 0.2
         self.size = 6
         self.effect = Sound("assets/sounds/pong.wav")
 
@@ -26,8 +26,10 @@ class Ball:
             self.effect.play()
 
         if self.pos.x >= max_width or self.pos.x <= min_width:
-            self.dir.x = -self.dir.x
-            self.effect.play()
+            self.pos = Vector2(self.screen.get_width() / 2, self.screen.get_height() / 2)
+            rand_dir_x = 1 if randint(0, 1) == 1 else -1
+            rand_dir_y = 1 if randint(0, 1) == 1 else -1
+            self.dir = Vector2(rand_dir_x, rand_dir_y)
 
         self.pos += self.dir * self.speed
 
