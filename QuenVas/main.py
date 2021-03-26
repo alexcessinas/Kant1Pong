@@ -1,11 +1,12 @@
 import pygame
 from pygame import event, display
 from game import Game
+from constants import grid_size, cell_size
 
 pygame.init()
 display.set_caption("QuenVas")
 
-screen = display.set_mode((800, 600))
+screen = display.set_mode((grid_size * cell_size, grid_size * cell_size))
 game = Game()
 
 game.init(screen)
