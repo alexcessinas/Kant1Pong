@@ -1,5 +1,5 @@
 from pygame import Surface, mouse, key
-from constants import colors, cell_size, grid_size
+from constants import colors, cell_size, grid_size, server_base_url
 from objects.player import Player
 from objects.cell import Cell
 from pygame.constants import K_0, K_1, K_2, K_3, K_4, K_5, K_6, K_7, K_8, K_9
@@ -35,13 +35,16 @@ class Game:
             self.player.l_mouse_pressed = False
 
         if self.countFrames >= 5000:
-            print("ICI")
-            res = requests.get('http://127.0.0.1:5000/full').json()
+            res = requests.get(f'{server_base_url}full').json()
+            for x in range(grid_size):
+                for y in range(grid_size):
+                    self.grid[x][y].color = res[x][y]
             self.countFrames = 0
+
         for x in range(grid_size):
             for y in range(grid_size):
-
                 self.grid[x][y].update()
+                
         self.player.update()
 
     def on_l_mouse_click(self):
@@ -55,7 +58,7 @@ class Game:
 	        "color": cell.color
         }
         headers = { 'content-type': 'application/json' }
-        requests.post('http://127.0.0.1:5000/place', dumps(body),headers=headers)
+        requests.post(f'{server_base_url}place', dumps(body),headers=headers)
         return
     
     def on_key_press(self):

@@ -1,5 +1,6 @@
 import requests
 from json import dumps
+from constants import grid_size
 
 from flask import Flask, request
 
@@ -7,8 +8,8 @@ app = Flask(__name__)
 
 history = []
 tab = []
-for i in range(30):
-    tab.append([0] * 30)
+for i in range(grid_size):
+    tab.append([0] * grid_size)
 
 @app.route('/place', methods=['POST'])
 def place(body = None):

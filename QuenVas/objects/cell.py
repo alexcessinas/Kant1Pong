@@ -7,7 +7,7 @@ class Cell:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.color = 2
+        self.color = 0
 
     def init(self, screen: Surface):
         self.screen = screen
