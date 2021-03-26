@@ -23,12 +23,11 @@ class Game:
                 cell.init(screen)
 
     def update(self):
-        self.player.update()
+        self.on_key_press()
 
         if mouse.get_pressed()[0]:
             if not self.player.l_mouse_pressed:
                 self.player.l_mouse_pressed = True
-                self.on_key_press()
                 self.on_l_mouse_click()
         else:
             self.player.l_mouse_pressed = False
@@ -37,6 +36,7 @@ class Game:
             for y in range(grid_size):
 
                 self.grid[x][y].update()
+        self.player.update()
 
     def on_l_mouse_click(self):
         x = floor(mouse.get_pos()[0] / cell_size)
