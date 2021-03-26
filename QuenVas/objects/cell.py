@@ -4,15 +4,17 @@ from random import randrange
 
 class Cell:
 
-    color = 0
-
     def __init__(self, x, y):
         self.x = x
         self.y = y
+        self.color = 2
 
     def init(self, screen: Surface):
         self.screen = screen
         return
 
     def update(self):
-        draw.rect(self.screen, (randrange(256), randrange(256), randrange(256)), Rect(self.x * cell_size, self.y * cell_size, cell_size, cell_size))
+        draw.rect(self.screen, colors[self.color], self.get_block_colliders())
+
+    def get_block_colliders(self):
+        return Rect(self.x * cell_size, self.y * cell_size, cell_size, cell_size)
