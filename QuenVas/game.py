@@ -25,7 +25,9 @@ class Game:
                 cell.init(screen)
 
     def update(self):
-        self.countFrames += 1
+        if self.countFrames >= 1800:
+            self.countFrames = 0
+        
         self.on_key_press()
         if mouse.get_pressed()[0]:
             if not self.player.l_mouse_pressed:
@@ -34,7 +36,7 @@ class Game:
         else:
             self.player.l_mouse_pressed = False
 
-        if self.countFrames >= 5000:
+        if self.countFrames <= 0:
             res = requests.get(f'{server_base_url}full').json()
             for x in range(grid_size):
                 for y in range(grid_size):
@@ -46,6 +48,7 @@ class Game:
                 self.grid[x][y].update()
                 
         self.player.update()
+        self.countFrames += 1
 
     def on_l_mouse_click(self):
         x = floor(mouse.get_pos()[0] / cell_size)
